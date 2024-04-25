@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+</head>
+<body>
+    <h1>Restaurants</h1>
+    <ul>
+        {% for restaurant in restaurants %}
+        <li>
+            <h3>{{ restaurant[0] }}</h3>
+            <p>Address: {{ restaurant[1] }}</p>
+            <p>Rating: {{ restaurant[2] }}</p>
+            <p>Cuisines: {{ restaurant[3] | join(', ') }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if total_pages and total_pages > 1 %}
+    {% if current_page > 1 %}
+    <a href="{{ url_for('restaurants', page=current_page - 1) }}">Previous Page</a>
+    {% endif %}
+    {% if current_page < total_pages %}
+    <a href="{{ url_for('restaurants', page=current_page + 1) }}">Next Page</a>
+    {% endif %}
+    {% endif %}
+</body>
+</html>
